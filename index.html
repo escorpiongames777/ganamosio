@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WhatsApp Bonos</title>
+  <title>Plataforma Verificada</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- Meta Pixel Code -->
+  <!-- Meta Pixel Code (SIN CAMBIOS) -->
   <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -17,21 +17,33 @@
     t.src='https://connect.facebook.net/en_US/fbevents.js';
     s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script');
-    fbq('init', '24818917464366642');
+    fbq('init', '1053176933005691');  /* <- TU ID */
     fbq('track', 'PageView');
   </script>
   <noscript>
     <img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=24818917464366642&ev=PageView&noscript=1"/>
+      src="https://www.facebook.com/tr?id=1053176933005691&ev=PageView&noscript=1"/>
   </noscript>
   <!-- End Meta Pixel Code -->
 
   <style>
+    :root{
+      --wa-green: #25D366;
+      --wa-green-dark: #1ebe57;
+      --wa-green-soft: #e9f9ef;
+      --text: #1a1a1a;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background-color: #1a1a1a;
-      color: #fff;
+      background-color: var(--white);
+      color: var(--text);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -44,165 +56,155 @@
     }
 
     .logo-text {
-      color: #D4AF37;
+      color: var(--wa-green);
       font-weight: 700;
-      font-size: 24px;
+      font-size: 26px;
     }
 
     hr {
       width: 100%;
       border: none;
-      border-top: 1px solid #444;
-      margin: 20px 0;
+      border-top: 1px solid var(--border);
+      margin: 20px 0 10px;
     }
 
     .verified {
       text-align: center;
+      padding-top: 10px;
     }
 
     .verified img {
-      width: 100px;
-      border-radius: 50%;
-      margin: 20px 0;
+      width: 64px;
+      height: 64px;
+      margin: 12px 0 10px;
     }
 
     .verified h2 {
-      font-size: 20px;
-      margin: 10px 0;
+      font-size: 22px;
+      margin: 6px 0 4px;
+      color: var(--text);
+      font-weight: 700;
     }
 
     .verified .green {
-      color: #D4AF37;
+      color: var(--wa-green);
       font-weight: 600;
+      margin: 0;
     }
 
     .message {
-      background: #2a2a2a;
-      padding: 15px;
-      border-radius: 10px;
-      margin: 20px 0;
+      background: var(--wa-green-soft);
+      padding: 14px 18px;
+      border-radius: 14px;
+      margin: 22px 0 24px;
       font-size: 16px;
-      color: #fff;
+      color: var(--text);
+      border: 1px solid #d9f3e3;
+      max-width: 640px;
     }
 
     .whatsapp-button {
-      background-color: #D4AF37;
-      color: #1a1a1a;
+      background-color: var(--wa-green);
+      color: #ffffff;
       padding: 18px 30px;
-      border-radius: 50px;
-      font-weight: bold;
+      border-radius: 999px;
+      font-weight: 800;
+      letter-spacing: .3px;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
       font-size: 18px;
-      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
       border: none;
       cursor: pointer;
       position: relative;
-      overflow: hidden;
-      transition: all 0.3s ease;
-      z-index: 1;
-      min-width: 250px;
-    }
-
-    .whatsapp-button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #bfa437;
-      z-index: -1;
-      transform: scaleX(0);
-      transform-origin: right;
-      transition: transform 0.3s ease;
+      transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease;
+      min-width: 260px;
+      box-shadow: 0 8px 20px rgba(37,211,102,0.25);
     }
 
     .whatsapp-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 0 15px #D4AF37, 
-                  0 0 25px rgba(212, 175, 55, 0.6),
-                  0 0 35px rgba(212, 175, 55, 0.3);
-    }
-
-    .whatsapp-button:hover::before {
-      transform: scaleX(1);
-      transform-origin: left;
+      transform: translateY(-2px);
+      background-color: var(--wa-green-dark);
+      box-shadow: 0 12px 26px rgba(37,211,102,0.32);
     }
 
     .whatsapp-button:active {
-      transform: translateY(1px);
+      transform: translateY(0);
     }
 
     .whatsapp-button i {
       margin-right: 10px;
-      font-size: 24px;
+      font-size: 22px;
     }
 
     @keyframes pulse {
-      0% {
-        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
-      }
-      70% {
-        box-shadow: 0 0 0 15px rgba(212, 175, 55, 0);
-      }
-      100% {
-        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
-      }
+      0%   { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.45); }
+      70%  { box-shadow: 0 0 0 18px rgba(37, 211, 102, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
     }
-
-    .whatsapp-button.pulse {
-      animation: pulse 2s infinite;
-    }
+    .whatsapp-button.pulse { animation: pulse 2.2s infinite; }
 
     .clientes {
-      background-color: #444;
-      color: #fff;
+      background-color: #f3f4f6;
+      color: var(--text);
       padding: 12px 20px;
-      border-radius: 30px;
-      font-weight: 600;
-      margin-bottom: 10px;
+      border-radius: 999px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      border: 1px solid var(--border);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .clientes::before{
+      content:"\\f0c0";
+      font: normal 16px/1 "Font Awesome 6 Free";
+      font-weight: 900;
+      color: var(--text);
+      opacity:.85;
     }
 
     .trustpilot {
       font-size: 14px;
-      padding: 8px 15px;
-      border: 1px dashed #999;
-      border-radius: 10px;
-      margin-bottom: 10px;
+      padding: 12px 16px;
+      border: 1px dashed #cbd5e1;
+      border-radius: 14px;
+      margin-bottom: 18px;
       text-align: center;
-      color: #ccc;
+      color: var(--muted);
+      background: #fafafa;
+      max-width: 680px;
     }
 
     .trustpilot img {
-      margin-top: 5px;
-      max-width: 120px;
+      margin-top: 8px;
+      max-width: 160px;
     }
 
     .footer {
       position: fixed;
       bottom: 0;
       width: 100%;
-      background: linear-gradient(to right, #bfa437, #D4AF37);
-      color: #1a1a1a;
+      background: var(--wa-green);
+      color: #ffffff;
       text-align: center;
       padding: 10px;
-      font-weight: bold;
+      font-weight: 800;
       font-size: 14px;
+      letter-spacing: .2px;
     }
 
     @media (max-width: 600px) {
       .whatsapp-button {
         font-size: 16px;
-        padding: 16px 25px;
+        padding: 16px 24px;
         min-width: 220px;
       }
       .clientes {
         font-size: 14px;
-        padding: 12px 18px;
+        padding: 10px 16px;
       }
       .message {
         font-size: 14px;
@@ -212,14 +214,14 @@
 </head>
 <body>
   <header>
-    <div class="logo-text">WhatsApp Bonos</div>
+    <div class="logo-text">Plataforma Verificada</div>
   </header>
 
   <hr />
 
   <section class="verified">
     <a href="#" target="_blank" onclick="fbq('trackCustom', 'ClickWhatsApp')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo" width="50" height="50" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo" width="64" height="64" />
     </a>
     <h2>✅ <b>Plataforma Verificada</b> ✅</h2>
     <p class="green">Casino de Confianza</p>
@@ -229,12 +231,18 @@
     Te estamos conectando con nuestro equipo vía WhatsApp.
   </div>
 
-  <a id="whatsapp-button" class="whatsapp-button pulse" target="_blank">
+  <a
+    id="whatsapp-button"
+    class="whatsapp-button pulse"
+    target="_blank"
+    rel="noopener noreferrer"
+    href="https://wa.me/5491176300373?text=Quiero%20el%20bono%20del%2020%25"
+  >
     <i class="fab fa-whatsapp"></i> ¡QUIERO MI BONO!
   </a>
 
   <div class="clientes">
-    👥 +10.000 CLIENTES GANANDO todos los días
+    +10.000 CLIENTES GANANDO todos los días
   </div>
 
   <div class="trustpilot">
@@ -251,7 +259,7 @@
       "5491176300373", // Número 1
       "5491124985966", // Número 2
       "5491171201922", // Número 3
-      "5491122930527", // Número 4
+      "5491122930527"  // Número 4
     ];
 
     const message = "Quiero el bono del 20%";
@@ -259,6 +267,8 @@
 
     const whatsappBtn = document.getElementById("whatsapp-button");
     if (whatsappBtn) {
+      whatsappBtn.href = `https://wa.me/${whatsappNumbers[currentIndex]}?text=${encodeURIComponent(message)}`;
+
       whatsappBtn.addEventListener("click", function () {
         const number = whatsappNumbers[currentIndex];
         currentIndex = (currentIndex + 1) % whatsappNumbers.length;
@@ -270,5 +280,4 @@
   </script>
 </body>
 </html>
-
 
