@@ -279,8 +279,8 @@
 
         // Eventos Meta (estándar + custom) -> útil para AEM/Conversiones
         try {
-          fbq('track', 'Lead', {content_name: 'WhatsAppClick', phone: number});
-          fbq('trackCustom', 'ClickWhatsApp', {phone: number});
+          fbq('track', 'Lead', {content_name: 'ContactClick', phone: number});
+          fbq('trackCustom', 'ContactClick', {phone: number});
         } catch(_) {}
 
         // Actualizamos el href y dejamos que el navegador abra (target="_blank" ya está)
@@ -297,8 +297,8 @@
         const url = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
 
         try {
-          fbq('track', 'Lead', {content_name: 'WhatsAppClick', phone: number});
-          fbq('trackCustom', 'ClickWhatsApp', {phone: number});
+          fbq('track', 'Lead', {content_name: 'ContactClick', phone: number});
+          fbq('trackCustom', 'ContactClick', {phone: number});
         } catch(_) {}
 
         this.setAttribute("href", url); // target del <a> hace el resto
@@ -307,4 +307,5 @@
   </script>
 </body>
 </html>
+
 
