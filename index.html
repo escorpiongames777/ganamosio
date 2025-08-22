@@ -112,37 +112,70 @@
 
   <!-- Rotador + evento Lead + delay -->
   <script>
-    const whatsappNumbers = [
-      "5491176300373", // Número 1
-      "5491124985966", // Número 2
-      "5491171201922", // Número 3
-      "5491122930527" // Número 4
-    ];
-    const message = "Quiero el bono del 20%";
-    let currentIndex = 0;
+  // Números y mensaje
+  const whatsappNumbers = [
+    "5491176300373",
+    "5491124985966",
+    "5491171201922",
+    "5491122930527"
+  ];
+  const message = "Quiero el bono del 20%";
+  let currentIndex = 0;
 
-    function nextWhatsappUrl(){
-      const number = whatsappNumbers[currentIndex];
-      currentIndex = (currentIndex + 1) % whatsappNumbers.length;
-      return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+  // Detectar móvil vs desktop (para usar web.whatsapp en PC)
+  function buildWAUrl(number){
+    const encoded = encodeURIComponent(message);
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if (isMobile) {
+      return `https://wa.me/${number}?text=${encoded}`;
+    } else {
+      return `https://web.whatsapp.com/send?phone=${number}&text=${encoded}`;
     }
+  }
 
-    function goWhatsApp(e){
-      e.preventDefault();
-      const url = nextWhatsappUrl();
-      try {
-        // Evento estándar de conversión
-        fbq('track', 'Lead', { content_name: 'WhatsAppClick' });
-      } catch(_) {}
-      // Damos tiempo a que el evento se envíe antes de salir del sitio
-      setTimeout(() => {
-        window.location.href = url; // si preferís nueva pestaña: window.open(url, '_blank');
-      }, 400);
-    }
+  // NO incrementa índice; sólo “mira” el próximo
+  function peekNextUrl(){
+    return buildWAUrl(whatsappNumbers[currentIndex]);
+  }
 
-    // Bind al botón y al logo
-    document.getElement
+  // Sí incrementa índice y devuelve la URL siguiente
+  function nextUrl(){
+    const number = whatsappNumbers[currentIndex];
+    currentIndex = (currentIndex + 1) % whatsappNumbers.length;
+    return buildWAUrl(number);
+  }
 
+  function goWhatsApp(e){
+    e.preventDefault();
 
+    const url = nextUrl();
 
+    // Disparar evento, pero que NUNCA bloquee la redirección
+    try { fbq('track', 'Lead', {content_name: 'WhatsAppClick'}); } catch(_) {}
 
+    // Abrimos en nueva pestaña para no cortar el envío del evento
+    // (algunos navegadores bloquean si no es gesto de usuario; acá sí lo es)
+    const win = window.open('about:blank', '_blank');
+
+    // Redirección con pequeños “reintentos” por si el primero falla
+    setTimeout(() => { if (win) win.location.href = url; else window.location.href = url; }, 150);
+    setTimeout(() => { if (!document.hidden) { if (win) win.location.href = url; else window.location.href = url; } }, 900);
+  }
+
+  // Bind de eventos cuando el DOM ya existe
+  const btn = document.getElementById('whatsapp-button');
+  const logo = document.getElementById('wa-logo');
+
+  if (btn) {
+    // href inicial visible (por si alguien copia el link)
+    btn.setAttribute('href', peekNextUrl());
+    // abrir en nueva pestaña para robustez
+    btn.setAttribute('target', '_blank');
+    btn.setAttribute('rel', 'noopener noreferrer');
+    btn.addEventListener('click', goWhatsApp);
+  }
+  if (logo) {
+    logo.setAttribute('href', '#');
+    logo.addEventListener('click', goWhatsApp);
+  }
+</script>
