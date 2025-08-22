@@ -7,17 +7,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- Meta Pixel Code (SIN CAMBIOS) -->
+  <!-- Meta Pixel Code -->
   <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src='https://connect.facebook.net/en_US/fbevents.js';
-    s=b.getElementsByTagName(e)[0];
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src='https://connect.facebook.net/en_US/fbevents.js';s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script');
-    fbq('init', '24818917464366642');  /* <- TU ID */
+    fbq('init', '24818917464366642'); /* <-- Verifica este ID */
     fbq('track', 'PageView');
   </script>
   <noscript>
@@ -36,179 +33,42 @@
       --border: #e5e7eb;
       --white: #ffffff;
     }
-
     * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: var(--white);
-      color: var(--text);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-    }
-
-    header {
-      margin-top: 30px;
-      text-align: center;
-    }
-
-    .logo-text {
-      color: var(--wa-green);
-      font-weight: 700;
-      font-size: 26px;
-    }
-
-    hr {
-      width: 100%;
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 20px 0 10px;
-    }
-
-    .verified {
-      text-align: center;
-      padding-top: 10px;
-    }
-
-    .verified img {
-      width: 64px;
-      height: 64px;
-      margin: 12px 0 10px;
-    }
-
-    .verified h2 {
-      font-size: 22px;
-      margin: 6px 0 4px;
-      color: var(--text);
-      font-weight: 700;
-    }
-
-    .verified .green {
-      color: var(--wa-green);
-      font-weight: 600;
-      margin: 0;
-    }
-
-    .message {
-      background: var(--wa-green-soft);
-      padding: 14px 18px;
-      border-radius: 14px;
-      margin: 22px 0 24px;
-      font-size: 16px;
-      color: var(--text);
-      border: 1px solid #d9f3e3;
-      max-width: 640px;
-    }
-
-    .whatsapp-button {
-      background-color: var(--wa-green);
-      color: #ffffff;
-      padding: 18px 30px;
-      border-radius: 999px;
-      font-weight: 800;
-      letter-spacing: .3px;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 22px;
-      font-size: 18px;
-      border: none;
-      cursor: pointer;
-      position: relative;
-      transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease;
-      min-width: 260px;
-      box-shadow: 0 8px 20px rgba(37,211,102,0.25);
-    }
-
-    .whatsapp-button:hover {
-      transform: translateY(-2px);
-      background-color: var(--wa-green-dark);
-      box-shadow: 0 12px 26px rgba(37,211,102,0.32);
-    }
-
-    .whatsapp-button:active {
-      transform: translateY(0);
-    }
-
-    .whatsapp-button i {
-      margin-right: 10px;
-      font-size: 22px;
-    }
-
-    @keyframes pulse {
-      0%   { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.45); }
-      70%  { box-shadow: 0 0 0 18px rgba(37, 211, 102, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-    }
-    .whatsapp-button.pulse { animation: pulse 2.2s infinite; }
-
-    .clientes {
-      background-color: #f3f4f6;
-      color: var(--text);
-      padding: 12px 20px;
-      border-radius: 999px;
-      font-weight: 700;
-      margin-bottom: 12px;
-      border: 1px solid var(--border);
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .clientes::before{
-      content:"\\f0c0";
-      font: normal 16px/1 "Font Awesome 6 Free";
-      font-weight: 900;
-      color: var(--text);
-      opacity:.85;
-    }
-
-    .trustpilot {
-      font-size: 14px;
-      padding: 12px 16px;
-      border: 1px dashed #cbd5e1;
-      border-radius: 14px;
-      margin-bottom: 18px;
-      text-align: center;
-      color: var(--muted);
-      background: #fafafa;
-      max-width: 680px;
-    }
-
-    .trustpilot img {
-      margin-top: 8px;
-      max-width: 160px;
-    }
-
-    .footer {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      background: var(--wa-green);
-      color: #ffffff;
-      text-align: center;
-      padding: 10px;
-      font-weight: 800;
-      font-size: 14px;
-      letter-spacing: .2px;
-    }
-
-    @media (max-width: 600px) {
-      .whatsapp-button {
-        font-size: 16px;
-        padding: 16px 24px;
-        min-width: 220px;
-      }
-      .clientes {
-        font-size: 14px;
-        padding: 10px 16px;
-      }
-      .message {
-        font-size: 14px;
-      }
+    body { margin:0; font-family:'Inter',sans-serif; background:var(--white); color:var(--text);
+           display:flex; flex-direction:column; align-items:center; padding:20px; }
+    header { margin-top:30px; text-align:center; }
+    .logo-text { color:var(--wa-green); font-weight:700; font-size:26px; }
+    hr { width:100%; border:none; border-top:1px solid var(--border); margin:20px 0 10px; }
+    .verified { text-align:center; padding-top:10px; }
+    .verified img { width:64px; height:64px; margin:12px 0 10px; }
+    .verified h2 { font-size:22px; margin:6px 0 4px; color:var(--text); font-weight:700; }
+    .verified .green { color:var(--wa-green); font-weight:600; margin:0; }
+    .message { background:var(--wa-green-soft); padding:14px 18px; border-radius:14px; margin:22px 0 24px;
+               font-size:16px; color:var(--text); border:1px solid #d9f3e3; max-width:640px; }
+    .whatsapp-button { background:var(--wa-green); color:#fff; padding:18px 30px; border-radius:999px;
+      font-weight:800; letter-spacing:.3px; text-decoration:none; display:inline-flex; align-items:center;
+      justify-content:center; margin-bottom:22px; font-size:18px; border:none; cursor:pointer; position:relative;
+      transition:transform .2s, box-shadow .2s, background-color .2s; min-width:260px;
+      box-shadow:0 8px 20px rgba(37,211,102,0.25);}
+    .whatsapp-button:hover { transform:translateY(-2px); background:var(--wa-green-dark);
+      box-shadow:0 12px 26px rgba(37,211,102,0.32);}
+    .whatsapp-button:active { transform:translateY(0); }
+    .whatsapp-button i { margin-right:10px; font-size:22px; }
+    @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(37,211,102,.45);}
+      70%{box-shadow:0 0 0 18px rgba(37,211,102,0);} 100%{box-shadow:0 0 0 0 rgba(37,211,102,0);} }
+    .whatsapp-button.pulse{ animation:pulse 2.2s infinite; }
+    .clientes { background:#f3f4f6; color:var(--text); padding:12px 20px; border-radius:999px; font-weight:700;
+      margin-bottom:12px; border:1px solid var(--border); display:inline-flex; align-items:center; gap:10px; }
+    .clientes::before{ content:"\f0c0"; font: normal 16px/1 "Font Awesome 6 Free"; font-weight:900; color:var(--text); opacity:.85; }
+    .trustpilot { font-size:14px; padding:12px 16px; border:1px dashed #cbd5e1; border-radius:14px; margin-bottom:18px;
+      text-align:center; color:var(--muted); background:#fafafa; max-width:680px; }
+    .trustpilot img { margin-top:8px; max-width:160px; }
+    .footer { position:fixed; bottom:0; width:100%; background:var(--wa-green); color:#fff; text-align:center;
+      padding:10px; font-weight:800; font-size:14px; letter-spacing:.2px; }
+    @media (max-width:600px){
+      .whatsapp-button{ font-size:16px; padding:16px 24px; min-width:220px; }
+      .clientes{ font-size:14px; padding:10px 16px; }
+      .message{ font-size:14px; }
     }
   </style>
 </head>
@@ -220,7 +80,8 @@
   <hr />
 
   <section class="verified">
-    <a href="#" target="_blank" onclick="fbq('trackCustom', 'ClickWhatsApp')">
+    <!-- Logo: ahora sin target y con id para capturar el click -->
+    <a id="wa-logo" href="#">
       <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo" width="64" height="64" />
     </a>
     <h2>✅ <b>Plataforma Verificada</b> ✅</h2>
@@ -231,13 +92,8 @@
     Te estamos conectando con nuestro equipo vía WhatsApp.
   </div>
 
-  <a
-    id="whatsapp-button"
-    class="whatsapp-button pulse"
-    target="_blank"
-    rel="noopener noreferrer"
-    href="https://wa.me/5491176300373?text=Quiero%20el%20bono%20del%2020%25"
-  >
+  <!-- Botón principal: sin target, el script maneja la redirección -->
+  <a id="whatsapp-button" class="whatsapp-button pulse" href="#">
     <i class="fab fa-whatsapp"></i> ¡QUIERO MI BONO!
   </a>
 
@@ -254,31 +110,39 @@
     🎁 BONO ACTIVO - ¡Solicítalo ahora por WhatsApp!
   </div>
 
+  <!-- Rotador + evento Lead + delay -->
   <script>
     const whatsappNumbers = [
       "5491176300373", // Número 1
       "5491124985966", // Número 2
       "5491171201922", // Número 3
-      "5491122930527"  // Número 4
+      "5491122930527" // Número 4
     ];
-
     const message = "Quiero el bono del 20%";
     let currentIndex = 0;
 
-    const whatsappBtn = document.getElementById("whatsapp-button");
-    if (whatsappBtn) {
-      whatsappBtn.href = `https://wa.me/${whatsappNumbers[currentIndex]}?text=${encodeURIComponent(message)}`;
-
-      whatsappBtn.addEventListener("click", function () {
-        const number = whatsappNumbers[currentIndex];
-        currentIndex = (currentIndex + 1) % whatsappNumbers.length;
-        const url = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
-        this.setAttribute("href", url);
-        fbq('trackCustom', 'ClickWhatsApp');
-      });
+    function nextWhatsappUrl(){
+      const number = whatsappNumbers[currentIndex];
+      currentIndex = (currentIndex + 1) % whatsappNumbers.length;
+      return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
     }
-  </script>
-</body>
-</html>
+
+    function goWhatsApp(e){
+      e.preventDefault();
+      const url = nextWhatsappUrl();
+      try {
+        // Evento estándar de conversión
+        fbq('track', 'Lead', { content_name: 'WhatsAppClick' });
+      } catch(_) {}
+      // Damos tiempo a que el evento se envíe antes de salir del sitio
+      setTimeout(() => {
+        window.location.href = url; // si preferís nueva pestaña: window.open(url, '_blank');
+      }, 400);
+    }
+
+    // Bind al botón y al logo
+    document.getElement
+
+
 
 
