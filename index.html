@@ -17,12 +17,12 @@
     t.src='https://connect.facebook.net/en_US/fbevents.js';
     s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script');
-    fbq('init', '1385958962502039');  /* <- revisa este ID */
+    fbq('init', '24818917464366642');  /* <- revisa este ID */
     fbq('track', 'PageView');
   </script>
   <noscript>
     <img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=1385958962502039&ev=PageView&noscript=1"/>
+      src="https://www.facebook.com/tr?id=24818917464366642&ev=PageView&noscript=1"/>
   </noscript>
   <!-- End Meta Pixel Code -->
 
@@ -36,7 +36,9 @@
       --border: #e5e7eb;
       --white: #ffffff;
     }
+
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
@@ -47,18 +49,23 @@
       align-items: center;
       padding: 20px;
     }
+
     header { margin-top: 30px; text-align: center; }
+
     .logo-text { color: var(--wa-green); font-weight: 700; font-size: 26px; }
+
     hr {
       width: 100%;
       border: none;
       border-top: 1px solid var(--border);
       margin: 20px 0 10px;
     }
+
     .verified { text-align: center; padding-top: 10px; }
     .verified img { width: 64px; height: 64px; margin: 12px 0 10px; }
     .verified h2 { font-size: 22px; margin: 6px 0 4px; color: var(--text); font-weight: 700; }
     .verified .green { color: var(--wa-green); font-weight: 600; margin: 0; }
+
     .message {
       background: var(--wa-green-soft);
       padding: 14px 18px;
@@ -69,6 +76,7 @@
       border: 1px solid #d9f3e3;
       max-width: 640px;
     }
+
     .whatsapp-button {
       background-color: var(--wa-green);
       color: #ffffff;
@@ -89,19 +97,24 @@
       min-width: 260px;
       box-shadow: 0 8px 20px rgba(37,211,102,0.25);
     }
+
     .whatsapp-button:hover {
       transform: translateY(-2px);
       background-color: var(--wa-green-dark);
       box-shadow: 0 12px 26px rgba(37,211,102,0.32);
     }
+
     .whatsapp-button:active { transform: translateY(0); }
+
     .whatsapp-button i { margin-right: 10px; font-size: 22px; }
+
     @keyframes pulse {
       0%   { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.45); }
       70%  { box-shadow: 0 0 0 18px rgba(37, 211, 102, 0); }
       100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
     }
     .whatsapp-button.pulse { animation: pulse 2.2s infinite; }
+
     .clientes {
       background-color: #f3f4f6;
       color: var(--text);
@@ -121,6 +134,7 @@
       color: var(--text);
       opacity:.85;
     }
+
     .trustpilot {
       font-size: 14px;
       padding: 12px 16px;
@@ -133,6 +147,7 @@
       max-width: 680px;
     }
     .trustpilot img { margin-top: 8px; max-width: 160px; }
+
     .footer {
       position: fixed;
       bottom: 0;
@@ -145,6 +160,7 @@
       font-size: 14px;
       letter-spacing: .2px;
     }
+
     @media (max-width: 600px) {
       .whatsapp-button { font-size: 16px; padding: 16px 24px; min-width: 220px; }
       .clientes { font-size: 14px; padding: 10px 16px; }
@@ -160,6 +176,7 @@
   <hr />
 
   <section class="verified">
+    <!-- El logo ahora también abre WA con la misma lógica -->
     <a href="#" target="_blank" rel="noopener noreferrer">
       <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo" width="64" height="64" />
     </a>
@@ -195,6 +212,7 @@
   <!-- Rotación ponderada con memoria local -->
   <script>
   document.addEventListener('DOMContentLoaded', function () {
+    // ======= Config =======
     const NUMBERS = [
       { id: "wa1", phone: "5491124985966" },
       { id: "wa2", phone: "5491171201922" },
@@ -203,8 +221,9 @@
     ];
     const DEFAULT_MSG = "Quiero el bono del 20%";
     const KEY_COUNTS  = "wa_counts_v2";
-    const KEY_HISTORY = "wa_history_v2";
+    const KEY_HISTORY = "wa_history_v2"; // evita repeticiones seguidas
 
+    // ======= Helpers memoria local =======
     function readJSON(key, fallback) {
       try { return JSON.parse(localStorage.getItem(key)) ?? fallback; }
       catch { return fallback; }
@@ -213,19 +232,26 @@
       localStorage.setItem(key, JSON.stringify(value));
     }
 
+    // Cargar/Inicializar conteos e historial
     const counts = readJSON(KEY_COUNTS, {});
     for (const n of NUMBERS) {
       if (typeof counts[n.id] !== "number") counts[n.id] = 0;
     }
-    const history = readJSON(KEY_HISTORY, []);
+    const history = readJSON(KEY_HISTORY, []); // guarda ids; máx 5 últimos
 
-    function weightOf(n) { return 1 / ((counts[n.id] || 0) + 1); }
+    // Peso base: menos usado => más probabilidad
+    function weightOf(n) {
+      return 1 / ((counts[n.id] || 0) + 1);
+    }
+    // Penaliza suavemente si ese id salió hace poco (evita repeticiones)
     function historyPenalty(id) {
       const idx = history.lastIndexOf(id);
-      if (idx === -1) return 1;
-      const distance = history.length - idx;
+      if (idx === -1) return 1; // no apareció recientemente
+      const distance = history.length - idx; // 1 = fue el último
       return Math.max(0.35, Math.min(1, distance / 5));
     }
+
+    // Sorteo ponderado (ruleta) con penalización por historial
     function pickWeighted() {
       const weights = NUMBERS.map(n => weightOf(n) * historyPenalty(n.id));
       const total = weights.reduce((a,b) => a + b, 0);
@@ -236,6 +262,8 @@
       }
       return NUMBERS[NUMBERS.length - 1];
     }
+
+    // Para tests: ?wa=1..4 fuerza la línea (opcional)
     function forcedByQuery() {
       const p = new URLSearchParams(location.search);
       const idxStr = p.get("wa");
@@ -246,38 +274,47 @@
       }
       return null;
     }
-    function chooseNumber() { return forcedByQuery() || pickWeighted(); }
+
+    function chooseNumber() {
+      return forcedByQuery() || pickWeighted();
+    }
+
     function registerUse(id) {
       counts[id] = (counts[id] || 0) + 1;
       writeJSON(KEY_COUNTS, counts);
+
       history.push(id);
       if (history.length > 5) history.shift();
       writeJSON(KEY_HISTORY, history);
     }
+
     function buildWaUrl(phone, text) {
       return `https://wa.me/${phone}?text=${encodeURIComponent(text || DEFAULT_MSG)}`;
     }
 
+    // ======= Enlaces =======
     const whatsappBtn = document.getElementById("whatsapp-button");
     const waLogoLink  = document.querySelector(".verified a");
 
+    // HREF inicial (por si alguien copia el link)
     if (whatsappBtn) {
       const init = chooseNumber();
       whatsappBtn.setAttribute("href", buildWaUrl(init.phone, DEFAULT_MSG));
     }
 
     function handleOpen(e, customText) {
-      e.preventDefault();
+      e.preventDefault(); // aseguramos setear URL antes de abrir
       const chosen = chooseNumber();
       registerUse(chosen.id);
 
-      // aquí cambio los eventos a “Registro”
+      // Tracking (intenta, sin romper si fbq no está)
       try {
         fbq('track', 'Lead', { content_name: 'Registro', phone: chosen.phone });
         fbq('trackCustom', 'Registro', { phone: chosen.phone });
       } catch(_) {}
 
       const finalUrl = buildWaUrl(chosen.phone, customText || DEFAULT_MSG);
+      // Abrimos controladamente (evita race con href viejo)
       window.open(finalUrl, "_blank", "noopener,noreferrer");
     }
 
