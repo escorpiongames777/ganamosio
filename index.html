@@ -192,7 +192,7 @@
     class="whatsapp-button pulse"
     target="_blank" 
     rel="noopener noreferrer"
-    href="https://wa.me/5491124985966?text=Quiero%20el%20bono%20del%2020%25">
+    href="https://wa.me/541127551952?text=Quiero%20el%20bono%20del%2020%25">
     <i class="fab fa-whatsapp"></i> ¡QUIERO MI BONO!
   </a>
 
@@ -209,15 +209,12 @@
     🎁 BONO ACTIVO - ¡Solicítalo ahora por WhatsApp!
   </div>
 
-  <!-- Rotación ponderada con memoria local -->
+  <!-- Rotación (reducida a un solo número) con memoria local -->
   <script>
   document.addEventListener('DOMContentLoaded', function () {
     // ======= Config =======
     const NUMBERS = [
-      { id: "wa1", phone: "5491124985966" },
-      { id: "wa2", phone: "5491171201922" },
-      { id: "wa3", phone: "5491176300373" },
-      { id: "wa4", phone: "5491138720699" }
+      { id: "wa1", phone: "541127551952" }
     ];
     const DEFAULT_MSG = "Quiero el bono del 20%";
     const KEY_COUNTS  = "wa_counts_v2";
@@ -263,7 +260,7 @@
       return NUMBERS[NUMBERS.length - 1];
     }
 
-    // Para tests: ?wa=1..4 fuerza la línea (opcional)
+    // Para tests: ?wa=1 fuerza la línea (opcional)
     function forcedByQuery() {
       const p = new URLSearchParams(location.search);
       const idxStr = p.get("wa");
